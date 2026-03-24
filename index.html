@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>My Portfolio</title>
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; }
+
+        /* ── HERO SECTION ── */
+        #hero-section {
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                              url('profile img2.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+        }
+        #image-div {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+        }
+        #profile-img {
+            height: 400px;
+            width: 80%;
+            object-fit: cover;
+            border: 4px solid white;
+        }
+        #text-div {
+            width: 60%;
+            padding-left: 30px;
+            color: white;
+        }
+        #hello-bubble {
+            background-color: #f3e000;
+            color: black;
+            padding: 8px 20px;
+            font-size: 16px;
+            display: inline-block;
+            position: relative;
+            margin-bottom: 15px;
+        }
+        #hello-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 15px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #f3e000;
+        }
+        #social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        #social-icons a {
+            color: #2eb8b8;
+            font-size: 28px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        #social-icons a:hover {
+            color: #f3e000;
+        }
+
+        /* ── NAVBAR ── */
+        #navbar {
+            background-color: #2eb8b8;
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 16px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        #navbar a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* ── SECTION TITLES ── */
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            color: #2eb8b8;
+            padding: 50px 0 10px;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid #d4af6a;
+            margin: 0 40px 40px;
+        }
+
+        /* ── SKILLS ── */
+        #skills {
+            background-color: #0a0a0a;
+            padding-bottom: 60px;
+        }
+        #skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px 60px;
+            justify-content: flex-start;
+        }
+        .skill-icon {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+        }
+        .skill-icon:hover {
+            transform: scale(1.15);
+        }
+
+        /* ── VIDEOS ── */
+        #videos {
+            background-color: white;
+            padding-bottom: 60px;
+        }
+        #videos-grid {
+            display: flex;
+            gap: 24px;
+            padding: 20px 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .video-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 360px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f9f9f9;
+        }
+        .video-card video {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            background: #000;
+        }
+        .video-card p {
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+        }
+
+        /* ── WORK EXPERIENCE TIMELINE ── */
+        #experience {
+            background-color: white;
+            padding-bottom: 60px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: #ccc;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 44px;
+            background-color: #2eb8b8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            z-index: 1;
+        }
+        .timeline-left {
+            width: 45%;
+            text-align: right;
+            padding-right: 40px;
+        }
+        .timeline-right {
+            width: 45%;
+            padding-left: 40px;
+        }
+        .timeline-tag {
+            display: inline-block;
+            background-color: #2eb8b8;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .timeline-tag.arrow-right::after {
+            content: "";
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #2eb8b8;
+        }
+        .timeline-tag.arrow-left::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #2eb8b8;
+        }
+        .timeline-logo {
+            max-width: 160px;
+            max-height: 70px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .timeline-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ── EDUCATION TIMELINE ── */
+        #education {
+            background-color: #0a0a0a;
+            padding-bottom: 60px;
+        }
+        #education .section-divider { border-top-color: #555; }
+        #education .timeline::before { background-color: #555; }
+        .edu-tag {
+            display: inline-block;
+            background-color: #2eb8b8;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .edu-tag.arrow-right::after {
+            content: "";
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #2eb8b8;
+        }
+        .edu-tag.arrow-left::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #2eb8b8;
+        }
+        .edu-degree {
+            display: inline-block;
+            border: 1px solid #f3e000;
+            color: #f3e000;
+            padding: 8px 16px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .edu-desc {
+            font-size: 13px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* ── SCROLL TO TOP ── */
+        #scrollTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #2eb8b8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2eb8b8;
+            cursor: pointer;
+            font-size: 18px;
+            background: white;
+            z-index: 999;
+        }
+        #scrollTop:hover { background: #2eb8b8; color: white; }
+        #map-widget {
+    position: -webkit-sticky;     /* stays visible while scrolling */
+    bottom: 20px;
+    right:70px;          /* sits beside your scroll-to-top button */
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 998;
+    border: 2px solid #2eb8b8;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════
+         HERO SECTION
+    ══════════════════════════════ -->
+    <div id="hero-section">
+
+        <!-- Left side - Profile Image -->
+        <div id="image-div">
+            <img src="profile img4.jpg" alt="Profile Photo" id="profile-img"/>
+        </div>
+
+        <!-- Right side - Text -->
+        <div id="text-div">
+            <div id="hello-bubble">Hello</div>
+            <h1>I'm GBOTUMA JOE GIZZIE</h1>
+            <p class="subtitle">Data Scientist | Agentic AI Engineer | LLM Prompt Engineering Expert</p>
+            <p class="bio">
+                I'm a versatile Data Scientist, Agentic AI Engineer, and LLM Prompt
+                Engineering Expert with over 2 years of hands-on experience transforming
+                raw data into powerful business solutions. I specialize in machine learning,
+                predictive modeling, NLP, and building intelligent AI-driven systems.
+                Passionate about bridging the gap between data science and cutting-edge
+                AI to drive innovation and real-world impact.
+            </p>
+
+            <!-- Social Icons -->
+            <div id="social-icons">
+                <a href="https://www.facebook.com/gizzieJoe" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/feed/?trk=guest_homepage-basic_google-one-tap-submit" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-stack-overflow"></i></a>
+                <a href="https://github.com/Gboluma/profilecreate" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.instagram.com/joe_the_hybrid/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-medium"></i></a>
+                <a href="https://x.com/GbolumaG15945" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════
+         NAVBAR
+    ══════════════════════════════ -->
+    <nav id="navbar">
+        <a href="#skills">Skills</a>
+        <a href="#videos">Videos</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+
+    <!-- ══════════════════════════════
+         SKILLS SECTION
+    ══════════════════════════════ -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <hr class="section-divider"/>
+        <div id="skills-grid">
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"/>
+            <img class="skill-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"/>
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+         VIDEOS SECTION
+    ══════════════════════════════ -->
+    <section id="videos">
+        <h2 class="section-title">Videos</h2>
+        <hr class="section-divider"/>
+        <div id="videos-grid">
+
+            <!-- Video 1: Replace 'video1.mp4' with your actual file name -->
+            <div class="video-card">
+                <h1>Global Institute Promo</h1>
+                <video controls>
+                    <source src="video1.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video>
+                <p>Video Title 1</p>
+            </div>
+
+            <!-- Video 2: Replace 'video2.mp4' with your actual file name -->
+            <div class="video-card">
+                <h1 style="text-align: right">Our Cybersecurity</h1>
+                <video controls>
+                    <source src="video2.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video>
+                <p>Video Title 2</p>
+            </div>
+
+            <!-- Video 3: Replace 'video3.mp4' with your actual file name -->
+            <div class="video-card">
+                <h1>My Experience</h1>
+                <video controls>
+                    <source src="video3.mp4" type="video/mp4"/>
+                    Your browser does not support the video tag.
+                </video>
+                <p>Video Title 3</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+         WORK EXPERIENCE
+    ══════════════════════════════ -->
+    <section id="experience">
+        <h2 class="section-title">Work Experience</h2>
+        <hr class="section-divider"/>
+        <div class="timeline">
+
+            <!-- Job 1 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <p style="font-size:22px; font-weight:bold; color:#333;">Gbionik Group SARL</p>
+                    <p style="font-size:13px; color:#888;">Douala, Cameroon</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-right">
+                    <div class="timeline-tag arrow-left">Data Scientist</div>
+                    <p style="font-size:12px; color:#2eb8b8; margin-bottom:6px;">July 2022 – Present</p>
+                    <p class="timeline-desc">
+                        Designed and deployed predictive models for renewable energy operations.
+                        Built ML pipelines using Python and SQL. Led churn prediction model
+                        improving client retention by 22%. Automated ETL processes reducing
+                        processing time by 40%.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <div class="timeline-tag arrow-right">Agentic AI Engineer</div>
+                    <p style="font-size:12px; color:#2eb8b8; margin-bottom:6px; text-align:right;">2023 – Present</p>
+                    <p class="timeline-desc" style="text-align:right;">
+                        Designing and deploying intelligent AI systems capable of autonomous
+                        reasoning, tool use, and multi-step decision making using LLMs.
+                    </p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-right">
+                    <p style="font-size:22px; font-weight:bold; color:#333;">AI & LLM Projects</p>
+                    <p style="font-size:13px; color:#888;">Remote</p>
+                </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <p style="font-size:22px; font-weight:bold; color:#333;">Data Analytics</p>
+                    <p style="font-size:13px; color:#888;">Operations & Customer Analytics</p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-right">
+                    <div class="timeline-tag arrow-left">LLM Prompt Expert</div>
+                    <p style="font-size:12px; color:#2eb8b8; margin-bottom:6px;">2023 – Present</p>
+                    <p class="timeline-desc">
+                        Crafting precision prompts that unlock the full potential of large
+                        language models for business automation, data analysis, and
+                        AI-powered applications.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+         EDUCATION
+    ══════════════════════════════ -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <hr class="section-divider"/>
+        <div class="timeline">
+
+            <!-- Edu 1 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <div class="edu-tag arrow-right">2017 – 2021</div>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-right">
+                    <div class="edu-degree">B.Tech – Electronics & Communication</div>
+                    <p class="edu-desc">
+                        Bachelor of Technology in Electronics and Communication Engineering.
+                        Madhav University, Rajasthan. Graduated 2021.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Edu 2 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <div class="edu-degree">Post Graduate Diploma – Computer Applications</div>
+                    <p class="edu-desc" style="text-align:right;">
+                        Fundamentals of Computers, MS Office, programming,
+                        and application development. Sri Chaitanya, Warangal.
+                    </p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-right">
+                    <div class="edu-tag arrow-left">2022 – 2023</div>
+                </div>
+            </div>
+
+            <!-- Edu 3 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <div class="edu-tag arrow-right">2023 – Present</div>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-right">
+                    <div class="edu-degree">AI & Data Science Certifications</div>
+                    <p class="edu-desc">
+                        Python for Data Science, Tableau, Artificial Intelligence,
+                        and CCNA Networking. Certified via Edureka and
+                        Global Institute of Cybersecurity.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Edu 4 -->
+            <div class="timeline-item">
+                <div class="timeline-left">
+                    <div class="edu-degree">Certificate – Desktop Publishing (DTP)</div>
+                    <p class="edu-desc" style="text-align:right;">
+                        Layout design, digital publishing tools, and creative
+                        content formatting. SATYAM Skill Development, Warangal.
+                    </p>
+                </div>
+                <div class="timeline-dot"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-right">
+                    <div class="edu-tag arrow-left">2015 – 2016</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+         CONTACT SECTION
+    ══════════════════════════════ -->
+    <section id="contact" style="background:#0a0a0a; padding: 60px 40px; text-align:center;">
+        <h2 class="section-title">Contact</h2>
+        <hr class="section-divider"/>
+        <div id="map-widget">
+
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.5932417169493!2d77.50443432989742!3d28.431528037034177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cc1afc7f36f31%3A0x5c6edef45ecae68d!2sCasa%20Grande-1%2C%20Chi%20V%2C%20Greater%20Noida%2C%20Uttar%20Pradesh%20201312!5e0!3m2!1sen!2sin!4v1772013270061!5m2!1sen!2sin" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+</div>
+        <p style="color:#aaa; font-size:16px; margin-bottom:10px;">
+            📧 <a href="/cdn-cgi/l/email-protection#3e595c51524b535f597e59535f5752105d5153" style="color:#2eb8b8;"><span class="__cf_email__" data-cfemail="781f1a17140d15191f381f15191114561b1715">[email&#160;protected]</span></a>
+        </p>
+        <p style="color:#aaa; font-size:16px; margin-bottom:10px;">
+            📞 +91-8800977463
+        </p>
+        <p style="color:#aaa; font-size:16px;">
+            📍 Case Grand, Tower A-802, Greater Noida, Uttar Pradesh, India
+        </p>
+    </section>
+
+
+    <!-- Scroll to top -->
+    <div id="s
